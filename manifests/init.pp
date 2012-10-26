@@ -4,7 +4,15 @@ class basic::install {
     ensure => installed
   }
   
+  package { "mktemp" :
+    ensure => installed   
+  }
+  
   package { "build-essential":
+    ensure => installed
+  }
+  
+  package { "gzip" :
     ensure => installed
   }
   
@@ -25,7 +33,7 @@ class basic::install {
 class basic::config {
   exec { "set-max-open-files":
     command => "/sbin/sysctl -w fs.file-max=100000",
-    unless => "cat /proc/sys/fs/file-max | grep -q 100000"
+    unless => "/bin/cat /proc/sys/fs/file-max | grep -q 100000"
   }
   
   exec { "update-max-open-files":
