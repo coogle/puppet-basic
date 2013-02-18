@@ -1,3 +1,4 @@
+
 class basic::install {
 
   package { "linux-headers-$kernelrelease" :
@@ -28,6 +29,9 @@ class basic::install {
     ensure => installed
   }
 
+  package { "dos2unix":
+    ensure => installed
+  }
 }
 
 class basic::config {
